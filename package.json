@@ -1,0 +1,18 @@
+{
+  "name": "back-biblioteca-redis",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "maiki",
+  "license": "ISC",
+  "description": "back de libreria con redis",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "response-time": "^2.3.4"
+  }
+}
