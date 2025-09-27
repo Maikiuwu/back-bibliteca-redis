@@ -5,7 +5,7 @@ async function Login (req, res) {
     
   } catch (err) {
     console.error(err)
-    res.status(500).json({ error: 'papi error' })
+    res.status(500).json({ error: 'papi chocolisto' })
   }
 }
 
