@@ -7,7 +7,7 @@ await client.connect();
 export async function Login (req, res) {
   try {
     
-    //recibe la info del front
+    //recibe la info del front asi bien pro
 
     
   } catch (err) {
