@@ -1,8 +1,5 @@
-import { signUp, signIn, getSession } from '../supabase/service/authService.js'
-import { client } from '../redisConection.js'
-import e from 'express';
 
-await client.connect();
+
 
 export async function Login (req, res) {
   try {
