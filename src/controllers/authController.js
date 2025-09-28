@@ -1,16 +1,34 @@
 import { signUp, signIn, getSession } from '../supabase/service/authService.js'
+import { client } from '../redisConection.js'
+import e from 'express';
 
-async function Login (req, res) {
+await client.connect();
+
+export async function Login (req, res) {
   try {
-    const { email, password } = req.body
-    const data = await signIn(email, password)
-    res.status(200).json({ user: data.user, session: data.session })
+    
+    //recibe la info del front
+
+    
   } catch (err) {
     console.error(err)
     res.status(401).json({ error: err.message })
   }
 }
 
+export async function Save (req, res) {
+ try {
+    
+    //recibe la info del front
+    //guarda en redis
+
+    
+  } catch (err) {
+    console.error(err)
+    res.status(401).json({ error: err.message })
+  }
+}
+/*
 async function Register (req, res) {
   try {
     const { email, password } = req.body
@@ -30,7 +48,7 @@ async function Home (req, res) {
     console.error(err)
     res.status(401).json({ error: err.message })
   }
-}
+}*/
 
-export { Login, Register, Home }
+
 
