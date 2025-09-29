@@ -3,7 +3,8 @@ import bodyParser from 'body-parser'
 import bibliotecaRoutes from './router/bibliotecaRoutes.js'
 import cors from 'cors'
 
-//import { createClient } from 'redis';
+
+import { client } from '../src/redisConection.js';
 
 // Crear instancia de Express
 const app = express()
@@ -32,3 +33,12 @@ app.listen(PORT, () => { console.log(`Server running on port ${PORT}`) })
 
 
 // Conectar a Redis
+
+/*
+await client.set('foo', 'bar');
+await client.set('user', JSON.stringify({username: 'admin', password: 'admin123'}));
+const result = await client.get('foo');
+const user = await client.get('user');
+console.log(user)
+console.log(result)  // >>> bar
+*/

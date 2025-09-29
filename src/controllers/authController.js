@@ -1,11 +1,14 @@
-
+import { client } from '../redisConection.js'
 
 
 export async function Login (req, res) {
   try {
+    const {body} = req
+    console.log(body)
     
-    //recibe la info del front asi bien pro
 
+    
+    
     
   } catch (err) {
     console.error(err)
