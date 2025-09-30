@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import { Login, Save } from '../controllers/authController.js'
+import { Login, Delete } from '../controllers/authController.js'
 
 const router = Router()
 
 router.post('/login', Login)
-router.post('/save', Save)
+router.post('/Delete', Delete)
 
 
 export default router

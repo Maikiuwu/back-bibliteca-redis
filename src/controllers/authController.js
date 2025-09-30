@@ -2,40 +2,49 @@ import { json } from 'express'
 import { client } from '../redisConection.js'
 
 
-export async function Login (req, res) {
+export async function Login(req, res) {
   try {
-    const {body} = req
+    const { body } = req
 
     const resp = await client.get(body.email)
 
-    if (resp){
+    if (resp) {
       const redis = JSON.parse(resp)
       redis.true = "RESREDIS"
       console.log(redis)
       return res.json(JSON.stringify(redis))
-      }
+    }
     const data = JSON.stringify(body)
     client.set(body.email, data)
     return res.json(data)
-      
-  }catch (err) {
-    console.error(err)
-    res.status(401).json({ error: err.message })
-  }
-}
 
-export async function Save (req, res) {
- try {
-    
-    //recibe la info del front
-    //guarda en redis
-
-    
   } catch (err) {
     console.error(err)
     res.status(401).json({ error: err.message })
   }
 }
+
+export async function Delete(req, res) {
+try {
+    // Escanea todas las claves en Redis
+    let cursor = '0'
+    let deleted = 0
+    do {
+      const reply = await client.scan(cursor)
+      cursor = reply.cursor
+      const keys = reply.keys.filter(k => k.includes('@')) // solo emails
+      if (keys.length > 0) {
+        await client.del(keys)
+        deleted += keys.length
+      }
+    } while (cursor !== '0')
+    res.json({ deleted })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: err.message })
+  }
+}
+
 /*
 async function Register (req, res) {
   try {
