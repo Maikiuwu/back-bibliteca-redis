@@ -7,15 +7,19 @@ export async function Login(req, res) {
     const { body } = req
 
     const resp = await client.get(body.email)
-
+    
+    //si existe en redis lo devuelve
     if (resp) {
+      console.log("el usuario ya existe en redis")
       const redis = JSON.parse(resp)
       redis.true = "RESREDIS"
       console.log(redis)
       return res.json(JSON.stringify(redis))
     }
+    
     const data = JSON.stringify(body)
     client.set(body.email, data)
+    console.log("el usuario no existe en redis, se crea")
     return res.json(data)
 
   } catch (err) {
