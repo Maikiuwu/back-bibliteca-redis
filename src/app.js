@@ -2,7 +2,9 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import bibliotecaRoutes from './router/bibliotecaRoutes.js'
 import cors from 'cors'
-import { createClient } from 'redis';
+
+
+import { client } from '../src/redisConection.js';
 
 // Crear instancia de Express
 const app = express()
@@ -22,7 +24,7 @@ app.use((req, res, next) => {
 
 // Manejo de rutas no encontradas
 app.use((req, res) => {
-  res.status(404).json({ error: 'Ruta no encontrada.' })
+  res.status(404).json({ error: 'Ruta no encontrada en el back.' })
 })
 
 // Arrancar servidor
@@ -31,7 +33,12 @@ app.listen(PORT, () => { console.log(`Server running on port ${PORT}`) })
 
 
 // Conectar a Redis
-const client = createClient();
-//callback para errores
-client.on('error', err => console.log('Redis Client Error', err));
-await client.connect();
+
+/*
+await client.set('foo', 'bar');
+await client.set('user', JSON.stringify({username: 'admin', password: 'admin123'}));
+const result = await client.get('foo');
+const user = await client.get('user');
+console.log(user)
+console.log(result)  // >>> bar
+*/

@@ -8,12 +8,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "maiki",
+  "author": "maikieldevoradordepenes",
   "license": "ISC",
   "description": "back de libreria con redis",
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "nodemon": "^3.1.10",
     "redis": "^5.8.2",

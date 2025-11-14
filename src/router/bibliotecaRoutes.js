@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import { Login, Register, Home } from '../controllers/bibliotecaControllers.js'
+import { Login, Delete } from '../controllers/authController.js'
 
 const router = Router()
 
-router.get('/login', Login)
-router.get('/register', Register)
-router.get('/home', Home)
+router.post('/login', Login)
+router.post('/Delete', Delete)
+
 
 export default router
