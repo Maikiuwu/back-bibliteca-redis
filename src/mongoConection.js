@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const mongoUri = process.env.MONGO_ADMIN;
-
+//banananaaaa
 
     mongoose.connect(mongoUri, {
         useNewUrlParser: true,
