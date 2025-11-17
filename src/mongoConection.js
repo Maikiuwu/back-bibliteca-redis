@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const mongoUri = process.env.MONGO_ADMIN;
 //banananaaaa
 
-    mongoose.connect(mongoUri, {
+    await mongoose.connect(mongoUri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })

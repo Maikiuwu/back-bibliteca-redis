@@ -1,16 +1,17 @@
+import 'dotenv/config'
 import express from 'express'
 import bodyParser from 'body-parser'
 import bibliotecaRoutes from './router/bibliotecaRoutes.js'
 import cors from 'cors'
-
-
-import { client } from '../src/redisConection.js';
+import { client as supabaseClient } from './supabase/client.js'
+import { syncSupabaseToMongo } from './supabaseToMongo.js'
 
 // Crear instancia de Express
 const app = express()
 
 app.use(cors())
 app.use(bodyParser.json())
+
 
 // Montar rutas de Bilioteca
 app.use('/biblioteca', bibliotecaRoutes)
