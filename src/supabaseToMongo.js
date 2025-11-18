@@ -17,29 +17,25 @@ try {
     process.exit(1)
 }
 
-// Definir esquema de ejemplo (ajusta según tus necesidades)
 const dataSchema = new mongoose.Schema({
     id: String,
-    name: String,
-    description: String,
-    createdAt: Date,
-    updatedAt: Date,
+    id_tipo: String,
+    titulo: String,
+    autor: String,
+    genero: String,
+    aniodepublicacion: String,
+    disponibilidad: String,
 }, { collection: 'supabase_data' })
 
 const DataModel = mongoose.model('SupabaseData', dataSchema)
 
 // Función para traer datos de Supabase y pasarlos a MongoDB
-export async function syncSupabaseToMongo(tabla) {
+export async function syncSupabaseToMongo(datos) {
     try {
         console.log(`Iniciando sincronización...`)
 
-        if (!tabla || tabla.length === 0) {
-            console.log(`No hay datos en la tabla ${tableName}`)
-            return
-        }
-
         // Insertar datos en MongoDB
-        const result = await DataModel.insertMany(tabla, { ordered: false })
+        const result = await DataModel.insertMany(datos, { ordered: false })
         console.log(`✓ ${result.length} registros insertados en MongoDB`)
 
         return result
@@ -50,11 +46,11 @@ export async function syncSupabaseToMongo(tabla) {
 }
 
 // Función para actualizar datos específicos
-export async function updateSupabaseDataInMongo(tableName, filter, updateData) {
+export async function updateSupabaseDataInMongo(datos) {
     try {
         console.log(`Actualizando datos en MongoDB...`)
 
-        const result = await DataModel.updateMany(filter, updateData)
+        const result = await DataModel.updateMany(datos)
         console.log(`✓ ${result.modifiedCount} registros actualizados`)
 
         return result
@@ -65,11 +61,11 @@ export async function updateSupabaseDataInMongo(tableName, filter, updateData) {
 }
 
 // Función para eliminar datos
-export async function deleteSupabaseDataFromMongo(filter) {
+export async function deleteSupabaseDataFromMongo(datos) {
     try {
         console.log(`Eliminando datos de MongoDB...`)
 
-        const result = await DataModel.deleteMany(filter)
+        const result = await DataModel.deleteMany(datos)
         console.log(`✓ ${result.deletedCount} registros eliminados`)
 
         return result
