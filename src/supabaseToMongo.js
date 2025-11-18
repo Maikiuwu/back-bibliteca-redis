@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import { client as supabaseClient } from './supabase/client.js'
 
 // Conectar a MongoDB (require MONGO_ADMIN in env)
-const mongoUri = "mongodb+srv://mige:123@cluster0.y1v1brx.mongodb.net/"
+const mongoUri = "mongodb+srv://mige:123@cluster0.y1v1brx.mongodb.net/Biblioteca"
 if (!mongoUri) {
     console.error('✗ MONGO_ADMIN no está definido. Añade la URI de MongoDB Atlas en el archivo .env como MONGO_ADMIN=...')
     process.exit(1)
