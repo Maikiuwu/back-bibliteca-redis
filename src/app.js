@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 import bibliotecaRoutes from './router/bibliotecaRoutes.js'
 import cors from 'cors'
 import { client as supabaseClient } from './supabase/client.js'
-import { syncSupabaseToMongo } from './supabaseToMongo.js'
+import { syncAggregatesToMongo } from './supabaseToMongo.js' // <- import corregido
 
 // Crear instancia de Express
 const app = express()
@@ -12,8 +12,7 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-
-// Montar rutas de Bilioteca
+// Montar rutas de Biblioteca
 app.use('/biblioteca', bibliotecaRoutes)
 
 // Middleware para CORS
@@ -30,7 +29,16 @@ app.use((req, res) => {
 
 // Arrancar servidor
 const PORT = process.env.PORT || 3000
-app.listen(PORT, () => { console.log(`Server running on port ${PORT}`) })
+app.listen(PORT, async () => {
+  console.log(`Server running on port ${PORT}`)
+  try {
+    // opcional: sincronizar al iniciar
+    await syncAggregatesToMongo()
+    console.log('Aggregates synced to Mongo')
+  } catch (err) {
+    console.error('Sync error:', err.message)
+  }
+})
 
 
 // Conectar a Redis

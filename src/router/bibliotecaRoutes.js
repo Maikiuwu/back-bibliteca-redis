@@ -1,12 +1,16 @@
 import { Router } from 'express'
 import { Login, Delete } from '../controllers/authController.js'
-import { syncData, deleteData } from '../controllers/syncController.js'
+import { syncData, getAggregates } from '../controllers/syncController.js'
 
 const router = Router()
 
 router.post('/login', Login)
 router.post('/Delete', Delete)
-router.post('/sync', syncData)
-router.post('/deleteMongo', deleteData)
+
+// endpoint para sincronizar (borra y re-crea agregados)
+router.post('/sync-aggregates', syncData)
+
+// endpoint para obtener agregados desde Mongo
+router.get('/aggregates', getAggregates)
 
 export default router
